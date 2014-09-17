@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace TenTwentyFour
 {
+    // Offsets:
+    // 22 .sln
+    // 6 app.config
+    // 36 AssemblyInfo
+    // 62 .csproj
+    // 7 this -> 131. from commit #1-> 519 -> 388 | 2= 
+
     class Program
     {
         private static Random rand = new Random();
@@ -19,60 +26,25 @@ namespace TenTwentyFour
             #region Markov Chain
 
             #region Create Variables
-            var hi = node("Hello");
-            var howU = node("How are you?");
-
-            var ok = node("Okay");
-            var gr8 = node("Great!");
-
-            var sup = node("Anything new?");
-
-            var nutn = node("Nothin'");
-            var _code = node("Code!");
-            var math = node("Maths :(");
-
-            var sux = node("Sux!");
-            var cool = node("Cool!");
-
-            var fun = node("That's fun");
-            var bye = node("Bye!");
+            MarkovNode<string> hi = node("Hello"), howU = node("How are you?"),
+                ok = node("Okay"), gr8 = node("Great!"),
+                sup = node("Anything new?"),
+                nutn = node("Nothin'"), _code = node("Code!"), math = node("Maths :("),
+                sux = node("Sux!"), cool = node("Cool!"), fun = node("That's fun"),
+                bye = node("Bye!");
 
             var chain = new MarkovChain<string>(hi);
 
-            hi.AddChild(1, hi);
-            hi.AddChild(3, howU);
-
-            howU.AddChild(1, howU);
-            howU.AddChild(3, gr8);
-            howU.AddChild(4, ok);
-
-            ok.AddChild(2, ok);
-            ok.AddChild(4, sup);
-
-            gr8.AddChild(1, gr8);
-            gr8.AddChild(4, sup);
-            gr8.AddChild(2, ok);
-
-            sup.AddChild(4, nutn);
-            sup.AddChild(5, _code);
-            sup.AddChild(1, math);
-
-            nutn.AddChild(1, sux);
-            nutn.AddChild(2, cool);
-
-            _code.AddChild(10, cool);
-            _code.AddChild(1, sux);
-
-            math.AddChild(1, cool);
-            math.AddChild(10, sux);
-
-            sux.AddChild(10, sup);
-            sux.AddChild(10, bye);
-
-            cool.AddChild(5, sup);
-            cool.AddChild(5, fun);
-            cool.AddChild(1, bye);
-
+            hi.AddChild(1, hi); hi.AddChild(3, howU);
+            howU.AddChild(1, howU); howU.AddChild(3, gr8); howU.AddChild(4, ok);
+            ok.AddChild(2, ok); ok.AddChild(4, sup);
+            gr8.AddChild(1, gr8); gr8.AddChild(4, sup); gr8.AddChild(2, ok);
+            sup.AddChild(4, nutn); sup.AddChild(5, _code); sup.AddChild(1, math);
+            nutn.AddChild(1, sux); nutn.AddChild(2, cool);
+            _code.AddChild(10, cool); _code.AddChild(1, sux);
+            math.AddChild(1, cool); math.AddChild(10, sux);
+            sux.AddChild(10, sup); sux.AddChild(10, bye);
+            cool.AddChild(5, sup); cool.AddChild(5, fun); cool.AddChild(1, bye);
             fun.AddChild(10, bye);
             #endregion
 
